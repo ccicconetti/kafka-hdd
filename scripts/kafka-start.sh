@@ -17,7 +17,7 @@ if [ ! -z "$(ssh root@$REMOTEHOST 'docker ps | grep -e kafka -e zookeper')" ] ; 
   exit 1
 fi
 
-scp create-docker-compose.sh root@$REMOTEHOST:~/
+scp $(dirname $(realpath $0))/create-docker-compose.sh root@$REMOTEHOST:~/
 
 ssh root@$REMOTEHOST "NUM_BROKERS=$NUM_BROKERS HOSTNAME=$REMOTEHOST OVERWRITE=1 ./create-docker-compose.sh"
 ssh root@$REMOTEHOST "docker-compose up -d"

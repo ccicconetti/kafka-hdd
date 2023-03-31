@@ -1,10 +1,22 @@
 # kafka-hdd
 
-Experiments with Hierarchical Data Distribution with Kafka
+Experiments with Hierarchical Data Distribution with [Kafka](https://kafka.apache.org/)
+
+## Setup
+
+Ideally, the experiments are executed on two hosts:
+
+- host1 runs the Kafka cluster
+- host2 runs the client
+
+XXX
 
 ## Requirements
 
-XXX
+1. XXX
+
+export KAFKA_DIR=$PWD/kafka_2.13-3.4.0
+export REMOTEHOST=magneto-10g
 
 You can verify that all the requirements are met with:
 

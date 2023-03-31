@@ -49,15 +49,37 @@ for algo in $algo_values ; do
     fi
 
     # start the kafka cluster
-    pushd $SCRIPTS_DIR
     REMOTEHOST=$REMOTEHOST \
         NUM_BROKERS=$b \
-        ./kafka-start.sh
-    popd
+        $SCRIPTS_DIR//kafka-start.sh
+    if [ $? -ne 0 ] ; then
+        echo "error when starting the kafka cluster, bailing out"
+        exit 1
+    fi
+
+    # start the experiment
+    REMOTEHOST=$REMOTEHOST \
+        KAFKA_DIR=$KAFKA_DIR \
+        NUM_CONSUMERS=$c \
+        NUM_BROKERS=$b \
+        NUM_PARTITIONS=$P \
+        REPLICATION_FACTOR=$r \
+        MESSAGE_SIZE=$m \
+        NUM_MESSAGES=250000 \
+        $SCRIPTS_DIR/perf-consumer.sh
+    if [ $? -ne 0 ] ; then
+        echo "error when running the experiment, bailing out"
+        exit 1
+    fi
+
 
     # stop the kafka cluster
     REMOTEHOST=$REMOTEHOST \
         $SCRIPTS_DIR/kafka-stop.sh
+    if [ $? -ne 0 ] ; then
+        echo "error when stopping the kafka cluster, bailing out"
+        exit 1
+    fi
 
     exit
 

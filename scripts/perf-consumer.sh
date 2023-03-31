@@ -30,6 +30,10 @@ if [ -z "$MESSAGE_SIZE" ] ; then
   MESSAGE_SIZE=1024
 fi
 
+if [ -z "$NUM_MESSAGES" ] ; then
+  NUM_MESSAGES=10000
+fi
+
 if [ $NUM_PARTITIONS -lt $NUM_CONSUMERS ] ; then
   echo "there should be at least as partitions ($NUM_PARTITIONS) as consumers ($NUM_CONSUMERS)"
   exit 1
@@ -42,6 +46,7 @@ echo "NUM_BROKERS:        $NUM_BROKERS"
 echo "NUM_PARTITIONS:     $NUM_PARTITIONS"
 echo "REPLICATION_FACTOR: $REPLICATION_FACTOR"
 echo "MESSAGE_SIZE:       $MESSAGE_SIZE"
+echo "NUM_MESSAGES:       $NUM_MESSAGES"
 
 # delete topic, if exists
 
@@ -69,10 +74,9 @@ if [ $? -ne 0 ] ; then
 fi
 
 # populate topic
-tot_messages=500000
 $KAFKA_DIR/bin/kafka-producer-perf-test.sh \
   --producer-props bootstrap.servers=$REMOTEHOST:19091 \
-  --num-records $tot_messages \
+  --num-records $NUM_MESSAGES \
   --throughput -1 \
   --record-size $MESSAGE_SIZE \
   --topic test-topic
@@ -86,10 +90,10 @@ mangle=$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$MESSAGE_SIZE-$NUM_CONSU
 TOPIC=test-topic \
   KAFKA_DIR=$KAFKA_DIR \
   NUM_CONSUMERS=$NUM_CONSUMERS \
-  NUM_MESSAGES=$(( tot_messages / 2 / $NUM_CONSUMERS )) \
+  NUM_MESSAGES=$(( NUM_MESSAGES / 2 / NUM_CONSUMERS )) \
   BOOTSTRAP_SERVERS=$REMOTEHOST:19091 \
   GROUP=$mangle \
-  ./consume.sh
+  $(dirname $(realpath $0))/consume.sh
 
 wait
 
