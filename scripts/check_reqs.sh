@@ -19,12 +19,12 @@ if [ -z "$(which kafkacat)" ] ; then
 fi
 
 if [ ! -x "$KAFKA_DIR/bin/kafka-topics.sh" ] ; then
-  echo "script not found: $BINARY"
+  echo "script not found: $KAFKA_DIR/bin/kafka-topics.sh"
   FAIL=1
 fi
 
 if [ ! -x "$KAFKA_DIR/bin/kafka-producer-perf-test.sh" ] ; then
-  echo "script not found: $BINARY"
+  echo "script not found: $KAFKA_DIR/bin/kafka-producer-perf-test.sh"
   FAIL=1
 fi
 

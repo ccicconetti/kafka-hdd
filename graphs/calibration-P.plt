@@ -170,6 +170,6 @@ GNUTERM = "wxt"
 plot  \
 'calibration-3-16-BroMax.dat' u 4:5 w lp pt 5 title "r = 3 | BroMax",\
 'calibration-3-16-BroMin.dat' u 4:5 w lp pt 6 title "r = 3 | BroMin",\
-'calibration-6-16-BroMax.dat' u 4:5 w lp pt 7 title "r = 6 | BroMax",\
-'calibration-6-16-BroMin.dat' u 4:5 w lp pt 8 title "r = 6 | BroMin"
+'calibration-5-16-BroMax.dat' u 4:5 w lp pt 7 title "r = 5 | BroMax",\
+'calibration-5-16-BroMin.dat' u 4:5 w lp pt 8 title "r = 5 | BroMin"
 #    EOF
