@@ -38,6 +38,13 @@ class TestConf(unittest.TestCase):
         self.assertEqual((1000, 20), problem.broMax(200, 4, 20))
         self.assertEqual((-1, -1), problem.broMax(200, 400, 20))
 
+    def test_solve(self):
+        problem = ProblemInstance()
+        for algo in ProblemInstance.all_algos():
+            problem.solve(algo, 1, 1, 1)
+        with self.assertRaises(RuntimeError):
+            problem.solve("unknown", 1, 1, 1)
+
 
 if __name__ == "__main__":
     unittest.main()

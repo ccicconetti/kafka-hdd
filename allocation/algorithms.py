@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+__author__ = "Claudio Cicconetti"
+__version__ = "0.1.0"
+__license__ = "MIT"
+
+
 import math
 
 
@@ -103,17 +108,28 @@ class ProblemInstance:
 
         return (-1, -1)
 
-    def maxP(self, b: int, r: int):
+    def maxP(self, b: int, r: int) -> int:
         assert b > 0
         assert r > 0
         return int(math.floor(b * self.Hmax / r))
 
-    def minP(self, c: int):
+    def minP(self, c: int) -> int:
         assert c > 0
         return int(max(int(round(self.T / self.Tp)), int(round(self.T / self.Tc)), c))
 
-    def check_feasible(self, r: int, P: int, b: int):
+    def check_feasible(self, r: int, P: int, b: int) -> bool:
         assert r > 0
         assert P > 0
         assert b > 0
         return (P * r * self.lr) <= (b * self.L) and (P * self.u) <= (b * self.U)
+
+    def solve(self, algo: str, c: int, r: int, B: int):
+        if algo == "BroMin":
+            return self.broMin(c, r, B)
+        elif algo == "BroMax":
+            return self.broMax(c, r, B)
+        raise RuntimeError(f"Unknown algorithm: {algo}")
+
+    @staticmethod
+    def all_algos():
+        return ["BroMin", "BroMax"]
