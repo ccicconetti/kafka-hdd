@@ -6,11 +6,14 @@ __license__ = "MIT"
 
 from algorithms import ProblemInstance
 
-r_values = [3, 6]
+r_values = [3, 5]
 B_values = [16]
-c_values = [100, 200, 300, 400, 500]
+c_values = range(20, 125, 5)
 
-problem = ProblemInstance()
+problem = ProblemInstance(
+    T=100e6, L=0.2, U=2, Tp=10e6, Tc=20e6, Hmax=30000, lr=0.005, u=0.025
+)
+
 for r in r_values:
     for B in B_values:
         for algo in ProblemInstance.all_algos():

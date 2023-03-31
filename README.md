@@ -2,6 +2,16 @@
 
 Experiments with Hierarchical Data Distribution with Kafka
 
+## Requirements
+
+XXX
+
+You can verify that all the requirements are met with:
+
+```
+scripts/check_reqs.sh
+```
+
 ## Calibration experiments
 
 ```
