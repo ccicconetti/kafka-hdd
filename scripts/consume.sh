@@ -8,8 +8,8 @@ if [ -z "$KAFKA_DIR" ] ; then
   KAFKA_DIR=.
 fi
 
-if [ -z "$BOOSTRAP_SERVERS" ] ; then
-  BOOSTRAP_SERVERS=localhost:9092
+if [ -z "$BOOTSTRAP_SERVERS" ] ; then
+  BOOTSTRAP_SERVERS=localhost:9092
 fi
 
 if [ -z "$TOPIC" ] ; then
@@ -27,21 +27,28 @@ if [ ! -x "$BINARY" ] ; then
   exit 1
 fi
 
+if [ -z "$GROUP" ] ; then
+  GROUP="test-group-$$"
+fi
 
-GROUP="test-group-$$"
-echo "group: $GROUP"
+echo "num-consumers:     $NUM_CONSUMERS"
+echo "bootstrap servers: $BOOTSTRAP_SERVERS"
+echo "num messages:      $NUM_MESSAGES"
+echo "Kafka dir:         $KAFKA_DIR"
+echo "topic:             $TOPIC"
+echo "group:             $GROUP"
 
-for (( i = 0 ; i < $N ; i++ )) ; do
+for (( i = 0 ; i < $NUM_CONSUMERS ; i++ )) ; do
 	r=$(( RANDOM % 100 ))
 	(sleep "0.$r" && \
 	echo "starting consumer #$i" && \
 	$BINARY \
-	--bootstrap-server $BOOSTRAP_SERVERS \
+	--bootstrap-server $BOOTSTRAP_SERVERS \
 	--hide-header \
 	--topic $TOPIC \
 	--messages $NUM_MESSAGES \
 	--group $GROUP \
-	> consumer.dat.$i && \
+	> consumer-$GROUP.dat.$i && \
 	echo "finished consumer #$i") &
 done
 
