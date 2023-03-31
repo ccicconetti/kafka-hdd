@@ -30,6 +30,11 @@ if [ -z "$MESSAGE_SIZE" ] ; then
   MESSAGE_SIZE=1024
 fi
 
+if [ $NUM_PARTITIONS -lt $NUM_CONSUMERS ] ; then
+  echo "there should be at least as partitions ($NUM_PARTITIONS) as consumers ($NUM_CONSUMERS)"
+  exit 1
+fi
+
 echo "REMOTEHOST:         $REMOTEHOST"
 echo "KAFKA_DIR:          $KAFKA_DIR"
 echo "NUM_CONSUMERS:      $NUM_CONSUMERS"
@@ -38,11 +43,18 @@ echo "NUM_PARTITIONS:     $NUM_PARTITIONS"
 echo "REPLICATION_FACTOR: $REPLICATION_FACTOR"
 echo "MESSAGE_SIZE:       $MESSAGE_SIZE"
 
-# delete topic (just in case)
-$KAFKA_DIR/bin/kafka-topics.sh \
-  --delete \
-  --topic test-topic \
-  --bootstrap-server $REMOTEHOST:19091
+# delete topic, if exists
+
+if [ ! -z "$($KAFKA_DIR/bin/kafka-topics.sh \
+              --list \
+              --topic test-topic \
+              --bootstrap-server $REMOTEHOST:19091)" ] ; then
+  echo "deleting topic"
+  $KAFKA_DIR/bin/kafka-topics.sh \
+    --delete \
+    --topic test-topic \
+    --bootstrap-server $REMOTEHOST:19091
+fi
 
 # create topic
 $KAFKA_DIR/bin/kafka-topics.sh \
@@ -57,7 +69,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 # populate topic
-tot_messages=100000
+tot_messages=500000
 $KAFKA_DIR/bin/kafka-producer-perf-test.sh \
   --producer-props bootstrap.servers=$REMOTEHOST:19091 \
   --num-records $tot_messages \
@@ -69,12 +81,12 @@ if [ $? -ne 0 ] ; then
   exit 1
 fi
 
-# consume 90% of the messages
-mangle=$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$c
+# consume 50% of the messages
+mangle=$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$MESSAGE_SIZE-$NUM_CONSUMERS
 TOPIC=test-topic \
   KAFKA_DIR=$KAFKA_DIR \
   NUM_CONSUMERS=$NUM_CONSUMERS \
-  NUM_MESSAGES=$(( tot_messages * 9 / 10 / $NUM_CONSUMERS ))
+  NUM_MESSAGES=$(( tot_messages / 2 / $NUM_CONSUMERS )) \
   BOOTSTRAP_SERVERS=$REMOTEHOST:19091 \
   GROUP=$mangle \
   ./consume.sh
