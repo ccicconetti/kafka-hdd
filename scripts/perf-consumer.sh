@@ -100,7 +100,7 @@ wait
 # aggregate the results into a single file
 cat consumer-$mangle.dat.* \
   | grep -v WARNING \
-  > consumer-$mangle.dat
+  >> consumer-$mangle.dat
 rm -f consumer-$mangle.dat.* 2> /dev/null
 
 # clean up: delete topic
