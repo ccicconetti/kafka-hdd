@@ -34,6 +34,10 @@ if [ -z "$NUM_MESSAGES" ] ; then
   NUM_MESSAGES=10000
 fi
 
+if [ -z "$OUTPUT_FILE" ] ; then
+  OUTPUT_FILE="consumer"
+fi
+
 if [ $NUM_PARTITIONS -lt $NUM_CONSUMERS ] ; then
   echo "there should be at least as partitions ($NUM_PARTITIONS) as consumers ($NUM_CONSUMERS)"
   exit 1
@@ -85,6 +89,9 @@ if [ $? -ne 0 ] ; then
   exit 1
 fi
 
+# remove spurious files from previous experiments, if any
+rm -f consumer-$mangle.dat.* 2> /dev/null
+
 # consume 50% of the messages
 mangle=$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$MESSAGE_SIZE-$NUM_CONSUMERS
 TOPIC=test-topic \
@@ -100,7 +107,7 @@ wait
 # aggregate the results into a single file
 cat consumer-$mangle.dat.* \
   | grep -v WARNING \
-  >> consumer-$mangle.dat
+  >> $OUTPUT_FILE-$mangle.dat
 rm -f consumer-$mangle.dat.* 2> /dev/null
 
 # clean up: delete topic

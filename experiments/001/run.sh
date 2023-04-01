@@ -10,6 +10,10 @@ if [ -z "$REMOTEHOST" ] ; then
   exit 1
 fi
 
+if [ -z "$DRY" ] ; then
+  DRY=0
+fi
+
 r_values="3 5"
 B_values="16"
 c_values="25 45 65 85 105 125"
@@ -17,6 +21,8 @@ m_values="1024"
 algo_values="BroMin BroMax"
 
 SCRIPTS_DIR=../../scripts
+
+EXPERIMENT_ID=$(basename $(dirname $(realpath $0)))
 
 for r in $r_values ; do
 for B in $B_values ; do
@@ -44,44 +50,47 @@ for algo in $algo_values ; do
     echo "r = $r, B = $B, c = $c, m = $m, algo = $algo, P = $P, b = $b"
 
     if [[ $P -lt 0 || $b -lt 0 ]] ; then
-        echo "not feasible"
+        echo "\tnot feasible"
         continue
     fi
 
-    # start the kafka cluster
-    REMOTEHOST=$REMOTEHOST \
-        NUM_BROKERS=$b \
-        $SCRIPTS_DIR//kafka-start.sh
-    if [ $? -ne 0 ] ; then
-        echo "error when starting the kafka cluster, bailing out"
-        exit 1
+    if [ $DRY -ne 1 ] ; then
+
+        # start the kafka cluster
+        REMOTEHOST=$REMOTEHOST \
+            NUM_BROKERS=$b \
+            $SCRIPTS_DIR//kafka-start.sh
+        if [ $? -ne 0 ] ; then
+            echo "error when starting the kafka cluster, bailing out"
+            exit 1
+        fi
+
+        # start the experiment
+        REMOTEHOST=$REMOTEHOST \
+            KAFKA_DIR=$KAFKA_DIR \
+            NUM_CONSUMERS=$c \
+            NUM_BROKERS=$b \
+            NUM_PARTITIONS=$P \
+            REPLICATION_FACTOR=$r \
+            MESSAGE_SIZE=$m \
+            NUM_MESSAGES=250000 \
+            OUTPUT_FILE="out-$EXPERIMENT_ID-$algo" \
+            $SCRIPTS_DIR/perf-consumer.sh
+        if [ $? -ne 0 ] ; then
+            echo "error when running the experiment, bailing out"
+            exit 1
+        fi
+
+
+        # stop the kafka cluster
+        REMOTEHOST=$REMOTEHOST \
+            $SCRIPTS_DIR/kafka-stop.sh
+        if [ $? -ne 0 ] ; then
+            echo "error when stopping the kafka cluster, bailing out"
+            exit 1
+        fi
+        
     fi
-
-    # start the experiment
-    REMOTEHOST=$REMOTEHOST \
-        KAFKA_DIR=$KAFKA_DIR \
-        NUM_CONSUMERS=$c \
-        NUM_BROKERS=$b \
-        NUM_PARTITIONS=$P \
-        REPLICATION_FACTOR=$r \
-        MESSAGE_SIZE=$m \
-        NUM_MESSAGES=250000 \
-        $SCRIPTS_DIR/perf-consumer.sh
-    if [ $? -ne 0 ] ; then
-        echo "error when running the experiment, bailing out"
-        exit 1
-    fi
-
-
-    # stop the kafka cluster
-    REMOTEHOST=$REMOTEHOST \
-        $SCRIPTS_DIR/kafka-stop.sh
-    if [ $? -ne 0 ] ; then
-        echo "error when stopping the kafka cluster, bailing out"
-        exit 1
-    fi
-
-    exit
 
 done
 done
