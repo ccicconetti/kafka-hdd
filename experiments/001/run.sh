@@ -74,7 +74,7 @@ for algo in $algo_values ; do
             REPLICATION_FACTOR=$r \
             MESSAGE_SIZE=$m \
             NUM_MESSAGES=250000 \
-            OUTPUT_FILE="out-$EXPERIMENT_ID-$algo" \
+            OUTPUT_FILE="out-$EXPERIMENT_ID-$r-$B-$c-$m-$algo.dat" \
             $SCRIPTS_DIR/perf-consumer.sh
         if [ $? -ne 0 ] ; then
             echo "error when running the experiment, bailing out"
