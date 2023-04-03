@@ -46,7 +46,7 @@ for (( i = 0 ; i < $NUM_CONSUMERS ; i++ )) ; do
 	--bootstrap-server $BOOTSTRAP_SERVERS \
 	--hide-header \
 	--topic $TOPIC \
-        --timeout 60000 \
+    --timeout 60000 \
 	--messages $NUM_MESSAGES \
 	--group $GROUP \
 	> consumer-$GROUP.dat.$i && \

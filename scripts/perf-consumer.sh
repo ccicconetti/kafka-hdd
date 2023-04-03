@@ -35,7 +35,7 @@ if [ -z "$NUM_MESSAGES" ] ; then
 fi
 
 if [ -z "$OUTPUT_FILE" ] ; then
-  OUTPUT_FILE="consumer"
+  OUTPUT_FILE=consumer-$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$MESSAGE_SIZE-$NUM_CONSUMERS.dat
 fi
 
 if [ $NUM_PARTITIONS -lt $NUM_CONSUMERS ] ; then
@@ -90,25 +90,24 @@ if [ $? -ne 0 ] ; then
 fi
 
 # remove spurious files from previous experiments, if any
-rm -f consumer-$mangle.dat.* 2> /dev/null
+rm -f consumer-tmp.dat.* 2> /dev/null
 
 # consume 50% of the messages
-mangle=$NUM_BROKERS-$NUM_PARTITIONS-$REPLICATION_FACTOR-$MESSAGE_SIZE-$NUM_CONSUMERS
 TOPIC=test-topic \
   KAFKA_DIR=$KAFKA_DIR \
   NUM_CONSUMERS=$NUM_CONSUMERS \
   NUM_MESSAGES=$(( NUM_MESSAGES / 2 / NUM_CONSUMERS )) \
   BOOTSTRAP_SERVERS=$REMOTEHOST:19091 \
-  GROUP=$mangle \
+  GROUP=tmp \
   $(dirname $(realpath $0))/consume.sh
 
 wait
 
 # aggregate the results into a single file
-cat consumer-$mangle.dat.* \
+cat consumer-tmp.dat.* \
   | grep -v WARNING \
-  >> $OUTPUT_FILE-$mangle.dat
-rm -f consumer-$mangle.dat.* 2> /dev/null
+  >> $OUTPUT_FILE
+rm -f consumer-tmp.dat.* 2> /dev/null
 
 # clean up: delete topic
 $KAFKA_DIR/bin/kafka-topics.sh \
