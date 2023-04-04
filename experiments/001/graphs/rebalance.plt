@@ -170,8 +170,12 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat"
 plot \
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat' u 1:($2/1000) w lp pt 5 title "BroMax | r = 3",\
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMin.dat' u 1:($2/1000) w lp pt 6 title "BroMin | r = 3",\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMax.dat' u 1:($2/1000) w lp pt 7 title "BroMax | r = 5",\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMin.dat' u 1:($2/1000) w lp pt 8 title "BroMin | r = 5"
+'../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat' u 1:($2/1000) w lp lt 1 pt 5 title "BroMax | r = 3",\
+'../post/rebalance.time.ms-out-001-3-16-1024-BroMin.dat' u 1:($2/1000) w lp lt 2 pt 6 title "BroMin | r = 3",\
+'../post/rebalance.time.ms-out-001-5-16-1024-BroMax.dat' u 1:($2/1000) w lp lt 3 pt 7 title "BroMax | r = 5",\
+'../post/rebalance.time.ms-out-001-5-16-1024-BroMin.dat' u 1:($2/1000) w lp lt 4 pt 8 title "BroMin | r = 5",\
+'../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 1 notitle,\
+'../post/rebalance.time.ms-out-001-3-16-1024-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 2 notitle,\
+'../post/rebalance.time.ms-out-001-5-16-1024-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 3 notitle,\
+'../post/rebalance.time.ms-out-001-5-16-1024-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 4 notitle
 #    EOF

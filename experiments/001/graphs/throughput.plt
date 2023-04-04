@@ -170,8 +170,12 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "../post/fetch.MB.sec-out-001-3-16-1024-BroMax.dat"
 plot \
-'../post/fetch.MB.sec-out-001-3-16-1024-BroMax.dat' u 1:($2*$1) w lp pt 5 title "BroMax | r = 3",\
-'../post/fetch.MB.sec-out-001-3-16-1024-BroMin.dat' u 1:($2*$1) w lp pt 6 title "BroMin | r = 3",\
-'../post/fetch.MB.sec-out-001-5-16-1024-BroMax.dat' u 1:($2*$1) w lp pt 7 title "BroMax | r = 5",\
-'../post/fetch.MB.sec-out-001-5-16-1024-BroMin.dat' u 1:($2*$1) w lp pt 8 title "BroMin | r = 5"
+'../post/fetch.MB.sec-out-001-3-16-1024-BroMax.dat' u 1:($2*$1) w lp lt 1 pt 5 title "BroMax | r = 3",\
+'../post/fetch.MB.sec-out-001-3-16-1024-BroMin.dat' u 1:($2*$1) w lp lt 2 pt 6 title "BroMin | r = 3",\
+'../post/fetch.MB.sec-out-001-5-16-1024-BroMax.dat' u 1:($2*$1) w lp lt 3 pt 7 title "BroMax | r = 5",\
+'../post/fetch.MB.sec-out-001-5-16-1024-BroMin.dat' u 1:($2*$1) w lp lt 4 pt 8 title "BroMin | r = 5",\
+'../post/fetch.MB.sec-out-001-3-16-1024-BroMax.dat' u 1:($2*$1):($3*$1) w ye lt 1 notitle,\
+'../post/fetch.MB.sec-out-001-3-16-1024-BroMin.dat' u 1:($2*$1):($3*$1) w ye lt 2 notitle,\
+'../post/fetch.MB.sec-out-001-5-16-1024-BroMax.dat' u 1:($2*$1):($3*$1) w ye lt 3 notitle,\
+'../post/fetch.MB.sec-out-001-5-16-1024-BroMin.dat' u 1:($2*$1):($3*$1) w ye lt 4 notitle
 #    EOF
