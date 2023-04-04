@@ -17,7 +17,7 @@ fi
 r_values="3 5"
 B_values="16"
 c_values="25 45 65 85 105 125"
-m_values="1024"
+m_values="1024 102400"
 algo_values="BroMin BroMax"
 
 SCRIPTS_DIR=../../scripts
