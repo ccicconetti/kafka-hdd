@@ -77,7 +77,7 @@ set surface
 unset contour
 set cntrlabel  format '%8.3g' font '' start 5 interval 20
 set mapping cartesian
-set datafile separator whitespace
+set datafile separator ","
 unset hidden3d
 set cntrparam order 4
 set cntrparam linear
@@ -125,13 +125,13 @@ set timestamp  font "" textcolor lt -1 norotate
 set trange [ * : * ] noreverse nowriteback
 set urange [ * : * ] noreverse nowriteback
 set vrange [ * : * ] noreverse nowriteback
-set xlabel "Number of consumers (c)" 
+set xlabel "Active processes" 
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
 set xrange [ * : * ] noreverse writeback
 set x2range [ * : * ] noreverse writeback
-set ylabel "Rebalance time (s)" 
+set ylabel "CDF" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
@@ -168,14 +168,6 @@ set fontpath
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "wxt"
-## Last datafile plotted: "../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat"
-plot \
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat' u 1:($2/1000) w lp lt 1 pt 5 title "BroMax | r = 3",\
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMin.dat' u 1:($2/1000) w lp lt 2 pt 6 title "BroMin | r = 3",\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMax.dat' u 1:($2/1000) w lp lt 3 pt 7 title "BroMax | r = 5",\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMin.dat' u 1:($2/1000) w lp lt 4 pt 8 title "BroMin | r = 5",\
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 1 notitle,\
-'../post/rebalance.time.ms-out-001-3-16-1024-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 2 notitle,\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 3 notitle,\
-'../post/rebalance.time.ms-out-001-5-16-1024-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 4 notitle
+## Last datafile plotted: "grafana/host2-active-processes-1k.csv"
+plot 'grafana/host1-active-processes-1k.csv' u 2:(1) smooth cnorm w l title "cluster",     'grafana/host2-active-processes-1k.csv' u 2:(1) smooth cnorm w l title "clients"
 #    EOF
