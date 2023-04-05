@@ -4,13 +4,26 @@
 
 The experiment evaluates the performance of Kafka consumers in a number of scenarios as given by the following system parameters:
 
-- replication factor: 3 or 5
-- number of available brokers: 16
-- number of consumers: from 25 to 125
-- message size: 1 KB or 100 KB
-- algorithm: BroMin or BroMax
+| Parameter | Values |
+|-|-|
+| replication factor | 3 or 5 |
+| number of available brokers | 16 |
+| number of consumers | from 25 to 125 |
+| message size | 1 KB or 100 KB |
+| algorithm | BroMin or BroMax |
 
-The algorithm is used to determine the number of partitions and brokers actually used.
+The algorithm is used to determine the number of partitions and brokers actually used, assuming the following values
+
+| Parameter | Value |
+|-|-|
+| Cluster throughput | 100 Mb/s |
+| Replication latency threshold | 200 ms |
+| Application unavailability threshold | 2 s |
+| Max producer throughput | 10 Mb/s | 
+| Max consumer throughput | 20 Mb/s |
+| Max number of open file descriptors | 30k |
+| Replication latency | 5 ms |
+| Unobservability time | 25 ms |
 
 ## Execution
 
