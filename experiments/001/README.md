@@ -53,3 +53,11 @@ Upon successful execution, you will obtain a set of raw data files `*.dat` in th
 cd graphs
 for i in *.plt ; do gnuplot -persist $i ; done
 ```
+
+### Artifacts
+
+You may download the dataset of results obtained on a quad-socket AMD Opteron(tm) Processor 6282 SE server with:
+
+```
+wget http://turig.iit.cnr.it/~claudio/public/kafka-hdd/experiment-001.tgz -O- | tar kzx
+```
