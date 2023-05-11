@@ -47,7 +47,7 @@ unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
 set key title "" center
-set key fixed left top vertical Right noreverse enhanced autotitle nobox
+set key fixed left top vertical Left noreverse enhanced autotitle nobox
 set key at 40,200
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
@@ -105,6 +105,7 @@ set mrtics default
 set nomttics
 set xtics border in scale 1,0.5 mirror norotate  autojustify
 set xtics  norangelimit autofreq 
+set xtics (25,50,75,100,125)
 set ytics border in scale 1,0.5 mirror norotate  autojustify
 set ytics  norangelimit autofreq 
 set ztics border in scale 1,0.5 nomirror norotate  autojustify
@@ -128,7 +129,7 @@ set xlabel "Number of consumers (c)"
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
-set xrange [ * : * ] noreverse nowriteback
+set xrange [ 25 : 125 ] noreverse nowriteback
 set x2range [ * : * ] noreverse nowriteback
 set ylabel "Number of partitions (P)" 
 set ylabel  font "" textcolor lt -1 rotate
