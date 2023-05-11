@@ -7,4 +7,4 @@ fi
 
 echo "REMOTEHOST:  $REMOTEHOST"
 
-ssh root@$REMOTEHOST "docker-compose down"
+ssh root@$REMOTEHOST "docker-compose down && docker volume prune -f"
