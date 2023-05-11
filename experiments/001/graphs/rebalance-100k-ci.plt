@@ -106,6 +106,7 @@ set mrtics default
 set nomttics
 set xtics border in scale 1,0.5 mirror norotate  autojustify
 set xtics  norangelimit autofreq 
+set xtics (25,45,65,85,105,125)
 set ytics border in scale 1,0.5 mirror norotate  autojustify
 set ytics  norangelimit autofreq 
 set ztics border in scale 1,0.5 nomirror norotate  autojustify
@@ -129,7 +130,7 @@ set xlabel "Number of consumers (c)"
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
-set xrange [ * : * ] noreverse writeback
+set xrange [ 25 : 125 ] noreverse writeback
 set x2range [ * : * ] noreverse writeback
 set ylabel "Rebalance time {/Symbol t}_R (s)" 
 set ylabel  font "" textcolor lt -1 rotate
