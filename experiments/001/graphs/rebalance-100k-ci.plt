@@ -47,7 +47,7 @@ unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
 set key title "" center
-set key fixed right top vertical Right noreverse enhanced autotitle nobox
+set key fixed right bottom vertical Right noreverse enhanced autotitle nobox
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
 set key noopaque
@@ -131,7 +131,7 @@ set x2label ""
 set x2label  font "" textcolor lt -1 norotate
 set xrange [ * : * ] noreverse writeback
 set x2range [ * : * ] noreverse writeback
-set ylabel "Consumer throughput (T_c, MB/s)"
+set ylabel "Rebalance time (s)" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
@@ -168,10 +168,14 @@ set fontpath
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "wxt"
-## Last datafile plotted: "../post/fetch.MB.sec-out-001-3-16-102400-BroMax.dat"
+## Last datafile plotted: "../post/rebalance.time.ms-out-001-3-16-102400-BroMax.dat"
 plot \
-'../post/fetch.MB.sec-out-001-3-16-102400-BroMax.dat' u 1:($2*$1) w lp lt 1 pt 5 title "BroMax | r = 3",\
-'../post/fetch.MB.sec-out-001-3-16-102400-BroMin.dat' u 1:($2*$1) w lp lt 2 pt 6 title "BroMin | r = 3",\
-'../post/fetch.MB.sec-out-001-5-16-102400-BroMax.dat' u 1:($2*$1) w lp lt 3 pt 7 title "BroMax | r = 5",\
-'../post/fetch.MB.sec-out-001-5-16-102400-BroMin.dat' u 1:($2*$1) w lp lt 4 pt 8 title "BroMin | r = 5"
+'../post/rebalance.time.ms-out-001-3-16-102400-BroMax.dat' u 1:($2/1000) w lp lt 1 pt 5 title "BroMax | r = 3",\
+'../post/rebalance.time.ms-out-001-3-16-102400-BroMin.dat' u 1:($2/1000) w lp lt 2 pt 6 title "BroMin | r = 3",\
+'../post/rebalance.time.ms-out-001-5-16-102400-BroMax.dat' u 1:($2/1000) w lp lt 3 pt 7 title "BroMax | r = 5",\
+'../post/rebalance.time.ms-out-001-5-16-102400-BroMin.dat' u 1:($2/1000) w lp lt 4 pt 8 title "BroMin | r = 5",\
+'../post/rebalance.time.ms-out-001-3-16-102400-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 1 notitle,\
+'../post/rebalance.time.ms-out-001-3-16-102400-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 2 notitle,\
+'../post/rebalance.time.ms-out-001-5-16-102400-BroMax.dat' u 1:($2/1000):($3/1000) w ye lt 3 notitle,\
+'../post/rebalance.time.ms-out-001-5-16-102400-BroMin.dat' u 1:($2/1000):($3/1000) w ye lt 4 notitle
 #    EOF
