@@ -49,13 +49,13 @@ git clone https://github.com/ccicconetti/kafka-hdd.git
 2. Download the Kafka binaries:
 
 ```
-wget -O- https://dlcdn.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz | tar xfz -
+wget -O- https://dlcdn.apache.org/kafka/3.4.1/kafka_2.13-3.4.1.tgz | tar xfz -
 ```
 
 3. Export the environment variables `KAFKA_DIR` and `REMOTEHOST` which are used by some of the scripts (for the latter use the real IP address of `host2`):
 
 ```
-export KAFKA_DIR=$PWD/kafka_2.13-3.4.0
+export KAFKA_DIR=$PWD/kafka_2.13-3.4.1
 export REMOTEHOST=1.2.3.4
 ```
 
