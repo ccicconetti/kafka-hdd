@@ -142,7 +142,7 @@ for id in "${consumer_ids[@]}" ; do
 done
 
 # aggregate the results into a single file by removing first 10% as warm-up
-rm $OUTPUT_FILE
+rm $OUTPUT_FILE 2> /dev/null
 messages_to_keep=$(( NUM_MESSAGES * 9 / 10 ))
 for f in endtoend-tmp.dat.* ; do
   tail -n $messages_to_keep $f >> $OUTPUT_FILE
