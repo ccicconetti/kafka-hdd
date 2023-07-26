@@ -141,9 +141,13 @@ for id in "${consumer_ids[@]}" ; do
   kill -INT $id
 done
 
-# aggregate the results into a single file
-cat endtoend-tmp.dat.* > $OUTPUT_FILE
-rm -f endtoend-tmp.dat.* 2> /dev/null
+# aggregate the results into a single file by removing first 10% as warm-up
+rm $OUTPUT_FILE
+messages_to_keep=$(( NUM_MESSAGES * 9 / 10 ))
+for f in endtoend-tmp.dat.* ; do
+  tail -n $messages_to_keep $f >> $OUTPUT_FILE
+  rm -f $f 2> /dev/null
+done
 
 # clean up: delete topic
 $KAFKA_DIR/bin/kafka-topics.sh \
