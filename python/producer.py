@@ -44,10 +44,10 @@ if __name__ == "__main__":
     )
     parser.add_argument("--rate", type=float, default=30, help="Injection rate, in Hz")
     parser.add_argument(
-        "--size_min", type=int, default=100, help="Minimum payload size"
+        "--size-min", type=int, default=100, help="Minimum payload size"
     )
     parser.add_argument(
-        "--size_max", type=int, default=100, help="Maximum payload size"
+        "--size-max", type=int, default=100, help="Maximum payload size"
     )
     parser.add_argument("--verbose", help="Verbose output", action="store_true")
     args = parser.parse_args()
