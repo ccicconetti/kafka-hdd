@@ -170,10 +170,10 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "out-003-3-20-BroMin.dat"
 plot  \
- '../out-003-3-10-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 1 pt 8 title "BroMax | 10 producers",\
- '../out-003-3-10-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 2 pt 9 title "BroMin | 10 producers",\
- '../out-003-3-15-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 3 pt 10 title "BroMax | 15 producers",\
- '../out-003-3-15-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 4 pt 11 title "BroMin | 15 producers",\
- '../out-003-3-20-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 5 pt 12 title "BroMax | 20 producers",\
- '../out-003-3-20-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 6 pt 13 title "BroMin | 20 producers"
+ '../out-003-3-10-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 1 pt 8 title "BroMax | p = 10",\
+ '../out-003-3-10-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 2 pt 9 title "BroMin | p = 10",\
+ '../out-003-3-15-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 3 pt 10 title "BroMax | p = 15",\
+ '../out-003-3-15-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 4 pt 11 title "BroMin | p = 15",\
+ '../out-003-3-20-BroMax.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 5 pt 12 title "BroMax | p = 20",\
+ '../out-003-3-20-BroMin.dat' u (int($2/10)*10):(1) smooth fnorm w lp lt 6 pt 13 title "BroMin | p = 20"
 #    EOF
