@@ -47,7 +47,7 @@ unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
 set key title "" center
-set key fixed left top vertical Right noreverse enhanced autotitle nobox
+set key fixed right top vertical Right noreverse enhanced autotitle nobox
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
 set key noopaque
@@ -135,7 +135,7 @@ set xtics (1, 5, 10, 20, 50, 100)
 set logscale y
 unset logscale
 set x2range [ * : * ] noreverse writeback
-set ylabel "Throughput (MB/s)"
+set ylabel "Production throughput (T_p, k records/s)"
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
@@ -173,8 +173,8 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "../post/throughput.MB-out-001-3-16-1024-BroMax.dat"
 plot \
-'../post/throughput.MB-out-002-3-16-BroMax.dat' u 1:($2) w lp lt 1 pt 5 title "BroMax | r = 3",\
-'../post/throughput.MB-out-002-3-16-BroMin.dat' u 1:($2) w lp lt 2 pt 6 title "BroMin | r = 3",\
-'../post/throughput.MB-out-002-5-16-BroMax.dat' u 1:($2) w lp lt 3 pt 7 title "BroMax | r = 5",\
-'../post/throughput.MB-out-002-5-16-BroMin.dat' u 1:($2) w lp lt 4 pt 8 title "BroMin | r = 5"
+'../post/throughput.records-out-002-3-16-BroMax.dat' u 1:($2/1000) w lp lt 1 pt 5 title "BroMax | r = 3",\
+'../post/throughput.records-out-002-3-16-BroMin.dat' u 1:($2/1000) w lp lt 2 pt 6 title "BroMin | r = 3",\
+'../post/throughput.records-out-002-5-16-BroMax.dat' u 1:($2/1000) w lp lt 3 pt 7 title "BroMax | r = 5",\
+'../post/throughput.records-out-002-5-16-BroMin.dat' u 1:($2/1000) w lp lt 4 pt 8 title "BroMin | r = 5"
 #    EOF
