@@ -170,10 +170,10 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "out-003-3-20-BroMin.dat"
 plot  \
- '../out-003-3-10-BroMax.dat' u 2:(1) smooth cnorm title "BroMax | 10 producers",\
- '../out-003-3-10-BroMin.dat' u 2:(1) smooth cnorm title "BroMin | 10 producers",\
- '../out-003-3-15-BroMax.dat' u 2:(1) smooth cnorm title "BroMax | 15 producers",\
- '../out-003-3-15-BroMin.dat' u 2:(1) smooth cnorm title "BroMin | 15 producers",\
- '../out-003-3-20-BroMin.dat' u 2:(1) smooth cnorm title "BroMax | 20 producers",\
- '../out-003-3-20-BroMin.dat' u 2:(1) smooth cnorm title "BroMin | 20 producers"
+ '../out-003-3-10-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | 10 producers",\
+ '../out-003-3-10-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | 10 producers",\
+ '../out-003-3-15-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | 15 producers",\
+ '../out-003-3-15-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | 15 producers",\
+ '../out-003-3-20-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | 20 producers",\
+ '../out-003-3-20-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | 20 producers"
 #    EOF
