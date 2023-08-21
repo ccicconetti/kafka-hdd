@@ -135,7 +135,7 @@ set xtics (1, 5, 10, 20, 50, 100)
 set logscale y
 unset logscale
 set x2range [ * : * ] noreverse writeback
-set ylabel "Production throughput (T_p, k records/s)"
+set ylabel "Production throughput (T_p, MB/s)"
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
