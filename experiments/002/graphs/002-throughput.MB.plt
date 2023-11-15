@@ -173,8 +173,8 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "../post/throughput.MB-out-001-3-16-1024-BroMax.dat"
 plot \
-'../post/throughput.MB-out-002-3-16-BroMax.dat' u 1:($2) w lp lt 1 pt 5 title "BroMax | r = 3",\
-'../post/throughput.MB-out-002-3-16-BroMin.dat' u 1:($2) w lp lt 2 pt 6 title "BroMin | r = 3",\
-'../post/throughput.MB-out-002-5-16-BroMax.dat' u 1:($2) w lp lt 3 pt 7 title "BroMax | r = 5",\
-'../post/throughput.MB-out-002-5-16-BroMin.dat' u 1:($2) w lp lt 4 pt 8 title "BroMin | r = 5"
+'../post/throughput.MB-out-002-3-16-BroMax.dat' u 1:($2) w lp lc 1 pt 4 title "BroMax | r = 3",\
+'../post/throughput.MB-out-002-3-16-BroMin.dat' u 1:($2) w lp lc 1 pt 5 title "BroMin | r = 3",\
+'../post/throughput.MB-out-002-5-16-BroMax.dat' u 1:($2) w lp lc 2 pt 6 title "BroMax | r = 5",\
+'../post/throughput.MB-out-002-5-16-BroMin.dat' u 1:($2) w lp lc 2 pt 7 title "BroMin | r = 5"
 #    EOF

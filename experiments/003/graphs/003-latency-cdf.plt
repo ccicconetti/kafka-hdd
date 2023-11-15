@@ -170,10 +170,10 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "out-003-3-20-BroMin.dat"
 plot  \
- '../out-003-3-10-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | p = 10",\
- '../out-003-3-10-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | p = 10",\
- '../out-003-3-15-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | p = 15",\
- '../out-003-3-15-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | p = 15",\
- '../out-003-3-20-BroMax.dat' u 2:(1) lw 2 smooth cnorm title "BroMax | p = 20",\
- '../out-003-3-20-BroMin.dat' u 2:(1) lw 2 smooth cnorm title "BroMin | p = 20"
+ '../out-003-3-10-BroMax.dat' u 2:(1) smooth cnorm w lp lc 3 pt 8 pointinterval 10 title "BroMax | p = 10",\
+ '../out-003-3-10-BroMin.dat' u 2:(1) smooth cnorm w lp lc 3 pt 9 pointinterval 10 title "BroMin | p = 10",\
+ '../out-003-3-15-BroMax.dat' u 2:(1) smooth cnorm w lp lc 4 pt 10 pointinterval 10 title "BroMax | p = 15",\
+ '../out-003-3-15-BroMin.dat' u 2:(1) smooth cnorm w lp lc 4 pt 11 pointinterval 10 title "BroMin | p = 15",\
+ '../out-003-3-20-BroMax.dat' u 2:(1) smooth cnorm w lp lc 5 pt 12 pointinterval 10 title "BroMax | p = 20",\
+ '../out-003-3-20-BroMin.dat' u 2:(1) smooth cnorm w lp lc 5 pt 13 pointinterval 10 title "BroMin | p = 20"
 #    EOF

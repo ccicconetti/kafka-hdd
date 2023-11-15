@@ -169,8 +169,8 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "wxt"
 ## Last datafile plotted: "calibration-6-16-BroMin.dat"
 plot  \
-'calibration-3-16-BroMax.dat' u 4:6 w lp pt 5 title "r = 3 | BroMax",\
-'calibration-3-16-BroMin.dat' u 4:6 w lp pt 6 title "r = 3 | BroMin",\
-'calibration-5-16-BroMax.dat' u 4:6 w lp pt 7 title "r = 5 | BroMax",\
-'calibration-5-16-BroMin.dat' u 4:6 w lp pt 8 title "r = 5 | BroMin"
+'calibration-3-16-BroMax.dat' u 4:6 w lp lc 1 pt 4 title "r = 3 | BroMax",\
+'calibration-3-16-BroMin.dat' u 4:6 w lp lc 1 pt 5 title "r = 3 | BroMin",\
+'calibration-5-16-BroMax.dat' u 4:6 w lp lc 2 pt 6 title "r = 5 | BroMax",\
+'calibration-5-16-BroMin.dat' u 4:6 w lp lc 2 pt 7 title "r = 5 | BroMin"
 #    EOF

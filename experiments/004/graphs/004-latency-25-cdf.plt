@@ -169,8 +169,8 @@ set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "wxt"
 plot  \
- '../out-004-10-25-BroMax.dat' u ($2*.001):(1) lw 2 smooth cnorm title "BroMax | c = 10",\
- '../out-004-10-25-BroMin.dat' u ($2*.001):(1) lw 2 smooth cnorm title "BroMin | c = 10",\
- '../out-004-15-25-BroMax.dat' u ($2*.001):(1) lw 2 smooth cnorm title "BroMax | c = 15",\
- '../out-004-15-25-BroMin.dat' u ($2*.001):(1) lw 2 smooth cnorm title "BroMin | c = 15"
+ '../out-004-10-25-BroMax.dat' u ($2*.001):(1) smooth cnorm w lp lc 3 pt 8 pointinterval 500 title "BroMax | c = 10",\
+ '../out-004-10-25-BroMin.dat' u ($2*.001):(1) smooth cnorm w lp lc 3 pt 9 pointinterval 500 title "BroMin | c = 10",\
+ '../out-004-15-25-BroMax.dat' u ($2*.001):(1) smooth cnorm w lp lc 4 pt 10 pointinterval 500 title "BroMax | c = 15",\
+ '../out-004-15-25-BroMin.dat' u ($2*.001):(1) smooth cnorm w lp lc 4 pt 11 pointinterval 500 title "BroMin | c = 15"
 #    EOF
