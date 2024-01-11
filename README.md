@@ -88,3 +88,15 @@ This will produce a number of `*.dat` files, which can be plotted with Gnuplot:
 gnuplot -persist calibration-P.plt
 gnuplot -persist calibration-b.plt
 ```
+
+## Credits
+
+If you use this software in a scientific publication, please cite the following work:
+
+```
+Theofanis P. Raptis, Claudio Cicconetti, Andrea Passarella,
+Efficient topic partitioning of Apache Kafka for high-reliability real-time data streaming applications,
+Future Generation Computer Systems,
+Volume 154, 2024, Pages 173-188,
+https://doi.org/10.1016/j.future.2023.12.028.
+```
